@@ -1,7 +1,7 @@
 ﻿
 namespace TracerLib
 {
-    internal class TraceResult
+    public class TraceResult
     {
         public readonly IReadOnlyList<ThreadInfo> ThreadInfo;
 

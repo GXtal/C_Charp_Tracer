@@ -6,24 +6,25 @@ using System.Threading.Tasks;
 
 namespace TracerLib
 {
-    internal class MethodInfo
+    public class MethodInfo
     {
 
-        public readonly string Name;
+        public string Name { get; set; }
+        public string ClassName { get; set; }
+        public long Time { get; set; }
 
-        public readonly string ClassName;
+        public List<MethodInfo> ChildMethods { get; set; };
 
-        public readonly int StartTime;
-        public int EndTime;
-
-        public List<MethodInfo> ChildMethods;
-
-        public MethodInfo(string name, string className, int startTime)
+        public MethodInfo(string name, string className, long startTime)
         {
             Name = name;
             ClassName = className;
-            StartTime = startTime;
+            Time = startTime;
             ChildMethods = new List<MethodInfo>();
+        }
+        public void MethodClose(long endTime)
+        {
+            Time = Time - endTime;
         }
         
     }

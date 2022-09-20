@@ -3,7 +3,7 @@
 
 namespace TracerLib
 {
-    internal class ThreadInfo
+    public class ThreadInfo
     {
         public Stopwatch Timer;
         public Stack<MethodInfo> RunningMethods;

@@ -1,6 +1,6 @@
 ﻿namespace TracerLib
 {
-    internal interface ITracer
+    public interface ITracer
     {
         // вызывается в начале замеряемого метода
         void StartTrace();
