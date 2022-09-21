@@ -13,7 +13,7 @@ namespace TracerLib
         public string ClassName { get; set; }
         public long Time { get; set; }
 
-        public List<MethodInfo> ChildMethods { get; set; };
+        public List<MethodInfo> ChildMethods { get; set; }
 
         public MethodInfo(string name, string className, long startTime)
         {
@@ -24,7 +24,7 @@ namespace TracerLib
         }
         public void MethodClose(long endTime)
         {
-            Time = Time - endTime;
+            Time = endTime - Time;
         }
         
     }

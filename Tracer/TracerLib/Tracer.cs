@@ -11,6 +11,11 @@ namespace TracerLib
     public class Tracer : ITracer
     {
         private ConcurrentDictionary<int,ThreadInfo> allThreads;
+
+        public Tracer()
+        {
+            allThreads = new ConcurrentDictionary<int,ThreadInfo>();
+        }
         public TraceResult GetTraceResult()
         {
             var threads=new List<ThreadInfo>();
@@ -20,14 +25,16 @@ namespace TracerLib
                 threads.Add(thread.Value);
             }
 
-            return new TraceResult(threads);
+            TraceResult traceResult = new TraceResult(threads);
+
+            return traceResult;
         }
 
         public void StartTrace()
         {
             int id = Thread.CurrentThread.ManagedThreadId;
 
-            ThreadInfo currentThread = allThreads.GetOrAdd(id, new ThreadInfo());
+            ThreadInfo currentThread = allThreads.GetOrAdd(id, new ThreadInfo(id));
 
             var currentMethod = new StackFrame(1).GetMethod();
 
@@ -56,6 +63,8 @@ namespace TracerLib
             }
 
             var threadInfo = allThreads[currentThreadId];
+            long stopTime = threadInfo.Timer.ElapsedMilliseconds;
+
             var methodInfo = threadInfo.RunningMethods.Pop();
 
             var currentMethod = new StackFrame(1).GetMethod();
@@ -65,18 +74,13 @@ namespace TracerLib
                 throw new ApplicationException("не обнаружен метод на стеке");
             }
 
-
-            //this should be illigal??
-            if (currentMethod.Name!=methodInfo.Name)
-            {
-                throw new ApplicationException("не соответсвие вершины стека и закрываемого метода");
-            }
-
+            methodInfo.MethodClose(stopTime);
             MethodInfo topMethodInfo;
 
             //method is called inside another?
             if (threadInfo.RunningMethods.TryPeek(out topMethodInfo))
             {
+
                 topMethodInfo.ChildMethods.Add(methodInfo);
             }
             else

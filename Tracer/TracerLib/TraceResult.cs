@@ -3,11 +3,17 @@ namespace TracerLib
 {
     public class TraceResult
     {
-        public readonly IReadOnlyList<ThreadInfo> ThreadInfo;
+        public IReadOnlyList<CompleteThreadInfo> ThreadsInfo { get; }
 
-        public TraceResult(IReadOnlyList<ThreadInfo> threadInfo)
+        public TraceResult(List<ThreadInfo> threadsInfo)
         {
-            ThreadInfo = threadInfo;
+            var temp = new List<CompleteThreadInfo>();
+            
+            foreach(var threadInfo in threadsInfo)
+            {
+                temp.Add(new CompleteThreadInfo(threadInfo));
+            }
+            ThreadsInfo = temp;            
         }
     }
     
