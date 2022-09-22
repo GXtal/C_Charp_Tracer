@@ -8,6 +8,7 @@ namespace TracerLib
         public Stopwatch Timer;
 
         public int ThreadId;
+        public long Time;
         public Stack<MethodInfo> RunningMethods;
         public List<MethodInfo> CompleteMethods;
         public ThreadInfo(int threadId)
@@ -17,8 +18,7 @@ namespace TracerLib
             CompleteMethods = new List<MethodInfo>();
 
             Timer = new Stopwatch();
-            Timer.Start();
-            
+            Timer.Start();            
         }
     }
 }

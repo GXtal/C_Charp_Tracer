@@ -22,7 +22,15 @@ namespace TracerLib
 
             foreach(var thread in allThreads)
             {
+                
+                long time = 0;
+                foreach(var a in thread.Value.CompleteMethods)
+                {
+                    time += a.Time;
+                }
+                thread.Value.Time = time;
                 threads.Add(thread.Value);
+
             }
 
             TraceResult traceResult = new TraceResult(threads);

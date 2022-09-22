@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace TracerLib
 {
-    public class CompleteMethodInfo
+    public class MethodInfoComplete
     {
         public string Name { get; }
         public string ClassName { get; }
         public long Time { get; }
 
-        public IReadOnlyList<CompleteMethodInfo> ChildMethods { get; }
+        public IReadOnlyList<MethodInfoComplete> ChildMethods { get; }
 
-        public CompleteMethodInfo(MethodInfo methodInfo)
+        public MethodInfoComplete(MethodInfo methodInfo)
         {
             Name = methodInfo.Name;
             ClassName = methodInfo.ClassName;
             Time = methodInfo.Time;
-            var temp = new List<CompleteMethodInfo>();
+            var temp = new List<MethodInfoComplete>();
             foreach (var childMethodInfo in methodInfo.ChildMethods)
             {
-                temp.Add(new CompleteMethodInfo(childMethodInfo));
+                temp.Add(new MethodInfoComplete(childMethodInfo));
             }
             ChildMethods = temp;
         }

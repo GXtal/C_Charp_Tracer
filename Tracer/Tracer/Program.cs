@@ -11,8 +11,9 @@ namespace ConsoleApp
             ClassB temp = new ClassB(tracer);
 
             temp.TestFunction();
-
-            Console.WriteLine(tracer.GetTraceResult());
+            var serializer = new JsonResultSerializer();
+            string res = serializer.GetSerializedContent(tracer.GetTraceResult());
+            Console.WriteLine(res);
         }
     }
 }
