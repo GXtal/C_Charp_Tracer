@@ -7,20 +7,28 @@ using TracerLib;
 
 namespace ConsoleApp
 {
-    public class ClassA
+    public class SimpleClass
     {
         private ITracer tracer;
 
-        public ClassA(ITracer tracer)
+        public SimpleClass(ITracer tracer)
         {
             this.tracer = tracer;
         }
 
-        public void TestFunction()
+        public void InnerFunction1()
         {
             tracer.StartTrace();
 
-            Thread.Sleep(120);
+            Thread.Sleep(400);
+
+            tracer.StopTrace();
+        }
+        public void InnerFunction2()
+        {
+            tracer.StartTrace();
+
+            Thread.Sleep(100);
 
             tracer.StopTrace();
         }

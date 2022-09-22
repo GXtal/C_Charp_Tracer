@@ -7,6 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "Tracer\Consol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TracerLib", "TracerLib\TracerLib.csproj", "{D83F810C-E72B-4DCD-BFEA-0A31D4E2E3D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracerTests", "TracerTests\TracerTests.csproj", "{54D5E549-BC7D-4CB0-98F3-16E4E8517DFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8FD715B1-A54F-4CE5-99D9-85A3EAA743E9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +28,10 @@ Global
 		{D83F810C-E72B-4DCD-BFEA-0A31D4E2E3D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D83F810C-E72B-4DCD-BFEA-0A31D4E2E3D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D83F810C-E72B-4DCD-BFEA-0A31D4E2E3D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54D5E549-BC7D-4CB0-98F3-16E4E8517DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D5E549-BC7D-4CB0-98F3-16E4E8517DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D5E549-BC7D-4CB0-98F3-16E4E8517DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D5E549-BC7D-4CB0-98F3-16E4E8517DFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

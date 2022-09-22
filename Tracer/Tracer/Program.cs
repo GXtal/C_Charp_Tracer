@@ -8,12 +8,20 @@ namespace ConsoleApp
         {
             Console.WriteLine("Hello, World!");
             ITracer tracer = new Tracer();
-            ClassB temp = new ClassB(tracer);
+            ComplexClass temp = new ComplexClass(tracer);
 
-            temp.TestFunction();
-            var serializer = new JsonResultSerializer();
+            temp.OutsideFunction();
+
+            IResultSerializer serializer = new JsonResultSerializer();
             string res = serializer.GetSerializedContent(tracer.GetTraceResult());
-            Console.WriteLine(res);
+            IMyWriter myWriter = new MyWriterConsole();
+            myWriter.Write(res);
+
+            serializer = new XmlResultSerializer();
+            res = serializer.GetSerializedContent(tracer.GetTraceResult());
+            myWriter = new MyWriterFile("temp.txt");
+            myWriter.Write(res);
+
         }
     }
 }

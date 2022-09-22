@@ -21,16 +21,9 @@ namespace TracerLib
             var threads=new List<ThreadInfo>();
 
             foreach(var thread in allThreads)
-            {
-                
-                long time = 0;
-                foreach(var a in thread.Value.CompleteMethods)
-                {
-                    time += a.Time;
-                }
-                thread.Value.Time = time;
+            {               
+                thread.Value.Time = thread.Value.Timer.ElapsedMilliseconds;
                 threads.Add(thread.Value);
-
             }
 
             TraceResult traceResult = new TraceResult(threads);
@@ -43,6 +36,7 @@ namespace TracerLib
             int id = Thread.CurrentThread.ManagedThreadId;
 
             ThreadInfo currentThread = allThreads.GetOrAdd(id, new ThreadInfo(id));
+            currentThread.Timer.Start();
 
             var currentMethod = new StackFrame(1).GetMethod();
 
@@ -94,6 +88,7 @@ namespace TracerLib
             else
             {
                 threadInfo.CompleteMethods.Add(methodInfo);
+                threadInfo.Timer.Stop();
             }
 
         }
